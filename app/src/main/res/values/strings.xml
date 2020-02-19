@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TipCalc</string>
+    <string name="welcome">Welcome to your new tip calculator</string>
+    <string name="enter_tip"></string>
+    <string name="calc">Calculate</string>
+    <string name="total"></string>
+    <string name="submit_tip">Submit Tip</string>
+    <string name="total_button">Total</string>
+</resources>
