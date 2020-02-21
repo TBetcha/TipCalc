@@ -71,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
             public void onClick(View v) {
                 {
+
                     double tot = Double.parseDouble(mEnterTotal.getText().toString());
-                   mDisplayTotal.setText(valueOf(billOne.getTotal(tot, billOne.getTipAmt())+tot));
+                   mDisplayTotal.setText(valueOf(billOne.getTotal( billOne.getTipAmt(),tot)));
 
 
 
