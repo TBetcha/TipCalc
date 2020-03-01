@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        //TODO stop incrementing total after one click & check boxes dont work if clicked before total
+        // so make them invisible until after a total has been calculated.
+
         personable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
