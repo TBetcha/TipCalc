@@ -92,7 +92,6 @@
         android:textSize="10sp" />
 
 
-
     <EditText
         android:id="@+id/display_total"
         android:layout_width="181dp"
@@ -101,13 +100,13 @@
         android:layout_marginRight="0dp"
         android:layout_marginBottom="30dp"
         android:layout_weight="1"
+        android:autofillHints="@string/your_total"
+        android:bufferType="spannable"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:singleLine="true"
-        android:text="your total"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:visibility="visible"
-        android:autofillHints="@string/your_total"/>
+        android:visibility="visible" />
 
 
 </LinearLayout>

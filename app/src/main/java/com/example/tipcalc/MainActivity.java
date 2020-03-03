@@ -3,6 +3,8 @@ package com.example.tipcalc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.icu.text.NumberFormat;
+import android.icu.util.Currency;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -14,7 +16,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
+import java.util.regex.Pattern;
+
 import static java.lang.String.valueOf;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean personableChecked = false;
     public boolean fastServiceChecked = false;
 
+
     private Bill billOne = new Bill();
 
-    //TODO change to total -- double totalBill = Double.parseDouble(mGetTip.getText().toString());
+    //TODO make some sort of begin function which holds all the booleans so it's not so scattered.
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,14 @@ public class MainActivity extends AppCompatActivity {
         mTotalEnter = (Button) findViewById(R.id.total_enter);
         personable = (CheckBox) findViewById(R.id.personable);
         fastService = (CheckBox) findViewById(R.id.fast_service);
-        //TODO boolean hasTotal = false;
+
+
+
+        //this will make checkboxes invisible before computing total
+        if(mDisplayTotal.getText().toString().isEmpty()) {
+            personable.setVisibility(View.INVISIBLE);
+            fastService.setVisibility(View.INVISIBLE);
+        }
 
         mSubmitTip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,14 +81,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //TODO disable functionality of checkboxes/total when we have total and bring it back when gone
+
 
         mTotalEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 {
                     double tot = Double.parseDouble(mEnterTotal.getText().toString());
-                    mDisplayTotal.setText(valueOf(billOne.getTotal(billOne.getTipAmt(), tot)));
+                   mDisplayTotal.setText(valueOf(billOne.getTotal(billOne.getTipAmt(), tot)));
                     hasTotal = true;
                     if(hasTotal == true){
                         mTotalEnter.setClickable(false);
@@ -81,7 +97,11 @@ public class MainActivity extends AppCompatActivity {
                         personable.setClickable(false);
                         fastService.setClickable(false);
                     }
-
+                    //once we generate a total checkboxes will be made
+                    if(!mDisplayTotal.getText().toString().isEmpty()){
+                        personable.setVisibility(View.VISIBLE);
+                        fastService.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
@@ -102,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                    mDisplayTotal.setText(valueOf(newWithExtra));
                    personableChecked = true;
                 }
+
             }
         });
 
@@ -111,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 if(billOne.getTipAmt() == 0){
                     return;
                 }
-                if(personable.isChecked()){
+                if(fastService.isChecked()){
                     double total = (Double.parseDouble(mDisplayTotal.getText().toString()));
                    double newWithExtra =  (total *.01) + total;
                    mDisplayTotal.setText(valueOf(newWithExtra));
