@@ -3,8 +3,6 @@ package com.example.tipcalc;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.icu.text.NumberFormat;
-import android.icu.util.Currency;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.KeyEvent;
@@ -16,8 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.DecimalFormat;
-import java.util.regex.Pattern;
+
 
 import static java.lang.String.valueOf;
 
@@ -41,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private Bill billOne = new Bill();
 
     //TODO make some sort of begin function which holds all the booleans so it's not so scattered.
+
+    //TODO if i make tip and total empty make bottom total go away so buttons can be used again and checkoxes go away
 
 
 
